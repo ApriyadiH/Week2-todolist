@@ -36,6 +36,22 @@ const Container = () => {
 // | $$    |  $$$$$$/| $$      | $$ | $$ | $$
 // |__/     \______/ |__/      |__/ |__/ |__/
 const AddForm = () => {
+    // Variabel untuk menampung data ///////////////////SEMENTARA
+    const [title, setTitle] = useState("");
+    const [context,setContext] = useState("");
+
+    // Ini handler onChange, setiap ada perubahan di dalam input box, akan diambil datanya, diisi kembali ke input box
+    const onChangeHandlerTitle = (event) => {
+        const isi_handler_title = event.target.value;
+        setTitle(isi_handler_title);
+    }
+
+    const onChangeHandlerContext = (event) => {
+        const isi_handler_context = event.target.value;
+        setContext(isi_handler_context);
+    }
+      
+    ////////////////////////////////////////////////////////
     const add_form = {
         backgroundColor: "#eee",
         borderRadius: "12px",
@@ -80,9 +96,11 @@ const AddForm = () => {
         <form style = {add_form}>
             <div style = {input_group}>
                 <label style = {form_label}>Title</label>
-                <input style = {add_input}></input>
+                <input style = {add_input} value={title} onChange={onChangeHandlerTitle}></input>
                 <label style = {form_label}>Context</label>
-                <input style = {add_input}></input>
+                <input style = {add_input} value={context} onChange={onChangeHandlerContext}></input>
+
+                <p>title = {title}, context = {context} </p>
             </div>
             <button style = {add_button}>Add to-do List</button>
         </form>
@@ -334,6 +352,11 @@ const List = () => {
 //                \______/     
 
 const App = () => {
+
+
+
+
+    /////////////////////////////////////////////////////
     const layout = {
         margin: "0 auto",
         maxWidth: "1200px",
@@ -350,3 +373,18 @@ const App = () => {
 }
 
 export default App;
+
+
+// TO DO LIST BENERAN
+// data diambil di input test
+// Data dikirim dan ngubah state
+// Data yang dikirim diubah jadi tambahan tdl
+// coba tombol delete
+// coba tombol done
+// data terikirim buat tombol done
+// data terkirim jadi daftar selesai
+// coba tombol hapus yg selesai
+// coba tombol batal yang selesai
+// ambil data tombol kalau selesai
+// tambahin tdl baru jika tekan tombol selesai
+// Rapihin
