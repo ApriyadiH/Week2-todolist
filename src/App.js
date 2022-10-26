@@ -35,22 +35,13 @@ const Container = () => {
 // | $$    | $$  | $$| $$      | $$ | $$ | $$
 // | $$    |  $$$$$$/| $$      | $$ | $$ | $$
 // |__/     \______/ |__/      |__/ |__/ |__/
-const AddForm = () => {
-    // Variabel untuk menampung data ///////////////////SEMENTARA
-    const [title, setTitle] = useState("");
-    const [context,setContext] = useState("");
-
-    // Ini handler onChange, setiap ada perubahan di dalam input box, akan diambil datanya, diisi kembali ke input box
-    const onChangeHandlerTitle = (event) => {
-        const isi_handler_title = event.target.value;
-        setTitle(isi_handler_title);
-    }
-
-    const onChangeHandlerContext = (event) => {
-        const isi_handler_context = event.target.value;
-        setContext(isi_handler_context);
-    }
-      
+const AddForm = ({
+    title,
+    context,
+    onChangeHandlerTitle,
+    onChangeHandlerContext,
+    onClickHandlerAdd}) => {
+    
     ////////////////////////////////////////////////////////
     const add_form = {
         backgroundColor: "#eee",
@@ -58,11 +49,11 @@ const AddForm = () => {
         justifyContent: "space-between",
         margin: "0 auto",
         padding: "30px",
-
+        
         display:"flex",
         alignItems:"center",
     }
-
+    
     const input_group = {
         alignItems: "center",
         display: "flex",
@@ -73,15 +64,15 @@ const AddForm = () => {
         fontSize: "16px",
         fontWeight: "700"
     }
-
+    
     const add_input = {
         border: "none",
         borderRadius: "12px",
         height: "40px",
         padding: "0 12px",
         width: "240px"
-      }
-
+    }
+    
     const add_button = {
         backgroundColor: "teal",
         border: "none",
@@ -91,7 +82,7 @@ const AddForm = () => {
         height: "40px",
         width: "140px"
     }
-
+    
     return (
         <form style = {add_form}>
             <div style = {input_group}>
@@ -100,11 +91,13 @@ const AddForm = () => {
                 <label style = {form_label}>Context</label>
                 <input style = {add_input} value={context} onChange={onChangeHandlerContext}></input>
 
-                <p>title = {title}, context = {context} </p>
+                {/* TEST input terbaca */}
+                {/* <p>title = {title}, context = {context}</p> */}
+                
             </div>
-            <button style = {add_button}>Add to-do List</button>
+            <button style = {add_button} disabled = {!title || !context} onClick={onClickHandlerAdd}>Add to-do List</button>
         </form>
-    )
+    );
 }
 
 //    /$$                             /$$          
@@ -115,9 +108,7 @@ const AddForm = () => {
 //   | $$ /$$| $$  | $$        | $$  | $$| $$  | $$
 //   |  $$$$/|  $$$$$$/        |  $$$$$$$|  $$$$$$/
 //    \___/   \______/          \_______/ \______/ 
-
-
-const ToDoWorking = () => {
+const ToDoComplete = ({todos,setTodos}) => {
     const list_wrapper = {
         display: "flex",
         flexWrap: "wrap",
@@ -165,18 +156,32 @@ const ToDoWorking = () => {
         width: "50%"
     }
 
+    function onClickHandlerDelete(id){
+        setTodos(current => current.filter(todo => {
+            return todo.td_id !== id
+        }),);
+        console.log(todos)
+    }
+
+    function onClickHandlerComplete(id){
+        console.log(todos)
+    };
+
     return (
         <div style = {list_wrapper}>
-            <div style = {to_do_container}>
+            {todos.map((todo) => (
+            <div style = {to_do_container} key={todo.td_id}>
                 <div>
-                    <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
-                    <div> Test context, Nanti diisi inputan dari context</div>
+                    <p>{todo.td_id}</p>
+                    <h2 style = {to_do_title}>{todo.title}</h2>
+                    <div>{todo.context}</div>
                 </div>
                 <div style = {button_set}>
-                    <button style = {delete_button}>Delete</button>
-                    <button style = {complete_button}>Done</button>
+                    <button style = {delete_button} onClick={() =>onClickHandlerDelete(todo.td_id)} >Delete</button>
+                    <button style = {complete_button} onClick={() => onClickHandlerComplete(todo.td_id)}>Done</button>
                 </div>
             </div>
+            ))}
             {/* <div style = {to_do_container}>
                 <div>
                     <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
@@ -211,7 +216,7 @@ const ToDoWorking = () => {
     )
 }
 
-const ToDoComplete = () => {
+const ToDoWorking = ({todos,setTodos}) => {
     const list_wrapper = {
         display: "flex",
         flexWrap: "wrap",
@@ -259,18 +264,42 @@ const ToDoComplete = () => {
         width: "50%"
     }
 
+    // const onClickHandlerDelete = () => {
+    //     setTodos(current => current.filter(todo => {
+    //         return todo.td_id !== id
+    //     }),
+    //     );
+    //     console.log('tombol hapus')
+    //     console.log(todos)
+    // };
+
+
+    function onClickHandlerDelete(id){
+        setTodos(current => current.filter(todo => {
+            return todo.td_id !== id
+        }),);
+        console.log(todos)
+    }
+
+    function onClickHandlerComplete(id){
+        console.log(todos)
+    };
+    
     return (
         <div style = {list_wrapper}>
-            <div style = {to_do_container}>
+            {todos.map((todo) => (
+            <div style = {to_do_container} key={todo.td_id}>
                 <div>
-                    <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
-                    <div> Test context, Nanti diisi inputan dari context</div>
+                    <p>{todo.td_id}</p>
+                    <h2 style = {to_do_title}>{todo.title}</h2>
+                    <div>{todo.context}</div>
                 </div>
                 <div style = {button_set}>
-                    <button style = {delete_button}>Delete</button>
-                    <button style = {complete_button}>Done</button>
+                    <button style = {delete_button} onClick={() =>onClickHandlerDelete(todo.td_id)} >Delete</button>
+                    <button style = {complete_button} onClick={() => onClickHandlerComplete(todo.td_id)}>Done</button>
                 </div>
             </div>
+            ))}
             {/* <div style = {to_do_container}>
                 <div>
                     <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
@@ -304,6 +333,7 @@ const ToDoComplete = () => {
         </div>
     )
 }
+
 
 //  /$$ /$$             /$$    
 // | $$|__/            | $$    
@@ -314,7 +344,7 @@ const ToDoComplete = () => {
 // | $$| $$ /$$$$$$$/  |  $$$$/
 // |__/|__/|_______/    \___/  
 
-const List = () => {
+const List = ({todos,setTodos}) => {
     const list_container = {
         padding: "0 24px"
     }
@@ -329,12 +359,19 @@ const List = () => {
         fontWeight: "bold"
     }
 
+
     return (
         <div style = {list_container}>
             <h2 style = {list_title}>Working.. 🔥 </h2>
-            <ToDoWorking/>
+            <ToDoWorking
+            todos = {todos}
+            setTodos= {setTodos}
+            />
             <h2 style = {list_title}>Done..! 🎉</h2>
-            <ToDoComplete/>
+            <ToDoComplete
+            todos = {todos}
+            setTodos = {setTodos}
+            />
         </div>
     )
 }
@@ -352,9 +389,34 @@ const List = () => {
 //                \______/     
 
 const App = () => {
+    // Deklarasi keadaan awal variabel
+    const [title, setTitle] = useState("");
+    const [context,setContext] = useState("");
+    const [todos, setTodos] = useState([
+        {
+          td_id: 1,
+          title: "Sample Title",
+          context: "Sample Context",
+          is_done: 0
+        },
+      ]);
 
+    const onClickHandlerAdd = (event) => {
+        event.preventDefault() //Mencegah file ter-refresh
+        setTitle("") // Mengosongkan input field title
+        setContext("") // Mengosongkan input field context
+        setTodos([...todos, { td_id: todos.length + 1, title: title, context: context, is_done: 0}]);
+     };
 
+    const onChangeHandlerTitle = (event) => {
+        const isi_handler_title = event.target.value;
+        setTitle(isi_handler_title);
+    }
 
+    const onChangeHandlerContext = (event) => {
+        const isi_handler_context = event.target.value;
+        setContext(isi_handler_context);
+    }
 
     /////////////////////////////////////////////////////
     const layout = {
@@ -366,8 +428,17 @@ const App = () => {
     return (
         <div style = {layout}>
             <Container />
-            <AddForm />
-            <List />
+            <AddForm 
+            title = {title}
+            context = {context}
+            setTitle={setTitle} 
+            setContext={setContext}
+            onChangeHandlerTitle={onChangeHandlerTitle}
+            onChangeHandlerContext={onChangeHandlerContext}
+            onClickHandlerAdd={onClickHandlerAdd}/>
+            <List 
+            todos = {todos}
+            setTodos = {setTodos}/>
         </div>
     )
 }
@@ -376,10 +447,12 @@ export default App;
 
 
 // TO DO LIST BENERAN
-// data diambil di input test
-// Data dikirim dan ngubah state
-// Data yang dikirim diubah jadi tambahan tdl
-// coba tombol delete
+// data diambil di input test SELESAI
+// Tombol bisa ditekan SELESAI
+// Tombol berubah state saat input terisi SELESAI
+// Data dikirim dan ngubah state SELESAI
+// Data yang dikirim diubah jadi tambahan tdl SELESAI
+// coba tombol delete SELESAI
 // coba tombol done
 // data terikirim buat tombol done
 // data terkirim jadi daftar selesai
