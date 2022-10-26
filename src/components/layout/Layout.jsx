@@ -13,22 +13,25 @@ const Layout = () => {
           td_id: 1,
           title: "Sample Title",
           context: "Sample Context",
-          is_done: 0
+          is_done: false
         },
       ]);
 
+    // Event handler ketika menekan tombol "Add to od List"
     const onClickHandlerAdd = (event) => {
         event.preventDefault() //Mencegah file ter-refresh
         setTitle("") // Mengosongkan input field title
         setContext("") // Mengosongkan input field context
-        setTodos([...todos, { td_id: todos.length + 1, title: title, context: context, is_done: 0}]);
+        setTodos([...todos, { td_id: todos.length + 1, title: title, context: context, is_done: false}]);
      };
 
+    // Event handler saat ada perubahan di input field title
     const onChangeHandlerTitle = (event) => {
         const isi_handler_title = event.target.value;
         setTitle(isi_handler_title);
     }
 
+    // Event handler saat ada perubahan di input field context
     const onChangeHandlerContext = (event) => {
         const isi_handler_context = event.target.value;
         setContext(isi_handler_context);
