@@ -11,9 +11,15 @@ const Layout = () => {
     const [todos, setTodos] = useState([
         {
           td_id: 1,
-          title: "Sample Title",
-          context: "Sample Context",
+          title: "리액트 공부하기",
+          context: "리액트 기초를 공부해봅시다.",
           is_done: false
+        },
+        {
+            td_id: 2,
+            title: "리액트 공부하기",
+            context: "리액트 기초를 공부해봅시다.",
+            is_done: true
         },
       ]);
 
