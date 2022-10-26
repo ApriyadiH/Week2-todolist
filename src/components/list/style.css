@@ -45,6 +45,19 @@
     width:  50% ;
 }
 
+.list_container{
+    padding: 20px 1em;
+}
+
+.list_title{
+    display: block;
+    font-Size: 1.5em;
+    margin-Block-Start: 0.83em;
+    margin-Block-End: 0.83em;
+    margin-Inline-Start: 0px;
+    margin-Inline-End: 0px;
+    font-Weight: bold;
+}
 /* 
  const list_wrapper = {
         display: "flex",
@@ -60,9 +73,9 @@
     }
 
     const to_do_title = {
-        display: "block",
-        fontSize: "1.5em",
-        marginBlockStart: "0.83em",
+        display: "block-",
+        fontSize: "1.5em-",
+        marginBlockStart-: "0.83em",
         marginBlockEnd: "0.83em",
         marginInlineStart: "0px",
         marginInlineEnd: "0px",
