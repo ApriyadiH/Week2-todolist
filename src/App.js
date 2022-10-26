@@ -136,7 +136,7 @@ const ToDoComplete = ({todos,setTodos}) => {
         display: "flex",
         gap: "10px",
         marginTop: "24px",      
-      }
+    }
 
     const delete_button = {
         backgroundColor: "#fff",
@@ -156,33 +156,33 @@ const ToDoComplete = ({todos,setTodos}) => {
         width: "50%"
     }
 
-    function onClickHandlerDelete(id){
-        setTodos(current => current.filter(todo => {
-            return todo.td_id !== id
-        }),);
-        console.log(todos)
-    }
+    // function onClickHandlerDelete(id){
+    //     setTodos(current => current.filter(todo => {
+    //         return todo.td_id !== id
+    //     }),);
+    //     console.log(todos)
+    // }
 
-    function onClickHandlerComplete(id){
-        console.log(todos)
-    };
+    // function onClickHandlerComplete(id){
+    //     console.log(todos)
+    // };
 
-    return (
+        return (
         <div style = {list_wrapper}>
-            {todos.map((todo) => (
-            <div style = {to_do_container} key={todo.td_id}>
-                <div>
-                    <p>{todo.td_id}</p>
-                    <h2 style = {to_do_title}>{todo.title}</h2>
-                    <div>{todo.context}</div>
-                </div>
-                <div style = {button_set}>
-                    <button style = {delete_button} onClick={() =>onClickHandlerDelete(todo.td_id)} >Delete</button>
-                    <button style = {complete_button} onClick={() => onClickHandlerComplete(todo.td_id)}>Done</button>
-                </div>
-            </div>
-            ))}
-            {/* <div style = {to_do_container}>
+        {/* //     {todos.map((todo) => (
+        //     <div style = {to_do_container} key={todo.td_id}>
+        //         <div>
+        //             <p>{todo.td_id}</p>
+        //             <h2 style = {to_do_title}>{todo.title}</h2>
+        //             <div>{todo.context}</div>
+        //         </div>
+        //         <div style = {button_set}>
+        //             <button style = {delete_button} onClick={() =>onClickHandlerDelete(todo.td_id)} >Delete</button>
+        //             <button style = {complete_button} onClick={() => onClickHandlerComplete(todo.td_id)}>Done</button>
+        //         </div>
+        //     </div>
+        //     ))} */}
+            <div style = {to_do_container}>
                 <div>
                     <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
                     <div> Test context, Nanti diisi inputan dari context</div>
@@ -192,7 +192,8 @@ const ToDoComplete = ({todos,setTodos}) => {
                     <button style = {complete_button}>Done</button>
                 </div>
             </div>
-            <div style = {to_do_container}>
+
+            {/* <div style = {to_do_container}>
                 <div>
                     <h2 style = {to_do_title}> Test todo list, nanti diisi dari inputan title </h2>
                     <div> Test context, Nanti diisi inputan dari context</div>
