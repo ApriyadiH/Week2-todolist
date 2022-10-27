@@ -19,7 +19,8 @@ const AddForm = ({
                 {/* <p>title = {title}, context = {context}</p> */}
                 
             </div>
-            <button className="add_button" disabled = {!title || !context} onClick={onClickHandlerAdd}>Add to-do List</button>
+            <button className="add_button"  onClick={onClickHandlerAdd}>Add to-do List</button>
+            {/* <button className="add_button" disabled = {!title || !context} onClick={onClickHandlerAdd}>Add to-do List</button> */}
         </form>
     );
 }

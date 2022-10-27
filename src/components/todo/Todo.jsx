@@ -2,9 +2,12 @@ import './style.css'
 const ToDoComplete = ({todos,setTodos}) => {
    
     function onClickHandlerDelete(id){
+        let sementara = window.confirm('Are you sure ?'); 
+        if (sementara === true) {
         setTodos(current => current.filter(todo => {
             return todo.td_id !== id
-        }),);
+        }),)
+        } else {}
     }
 
     function onClickHandlerCancel(id){
@@ -45,9 +48,12 @@ const ToDoComplete = ({todos,setTodos}) => {
 const ToDoWorking = ({todos,setTodos}) => { 
 
     function onClickHandlerDelete(id){
+        let sementara = window.confirm("Are you sure ?") 
+        if (sementara === true ) {
         setTodos(current => current.filter(todo => {
             return todo.td_id !== id
         }),);
+    }
     }
 
     function onClickHandlerComplete(id){

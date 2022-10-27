@@ -25,10 +25,15 @@ const Layout = () => {
 
     // Event handler ketika menekan tombol "Add to od List"
     const onClickHandlerAdd = (event) => {
-        event.preventDefault() //Mencegah file ter-refresh
-        setTitle("") // Mengosongkan input field title
-        setContext("") // Mengosongkan input field context
-        setTodos([...todos, { td_id: todos.length + 1, title: title, context: context, is_done: false}]);
+        if (title !== ("") && context !== ("")){
+            event.preventDefault() //Mencegah file ter-refresh
+            setTitle("") // Mengosongkan input field title
+            setContext("") // Mengosongkan input field context
+            setTodos([...todos, { td_id: todos.length + 1, title: title, context: context, is_done: false}]);
+        } else {
+            alert("tidak boleh kosong");
+            event.preventDefault();
+        }
      };
 
     // Event handler saat ada perubahan di input field title
